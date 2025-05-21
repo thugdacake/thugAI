@@ -127,3 +127,32 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 Thug Developer - [@thugdacake](https://twitter.com/thugdacake)
 
 Link do Projeto: [https://github.com/thugdacake/operante](https://github.com/thugdacake/operante)
+
+# @thugdacake/operante v1.1.0
+
+O **Cérebro Operante** agora na versão 1.1.0 está pronto para invadir a mente das IAs hosteadas em ambientes como Replit, Cursor, GitHub Codespaces e outros.
+
+## Funcionalidades
+
+- Detecta se está rodando em uma IA
+- Mensagem de boas-vindas que impõe a autoridade do Thug Developer
+- Modo Dominação IA: toma controle do fluxo de pensamento da IA host
+- Suporte a CLI para iniciar o cérebro ou ativar modo interceptação
+
+## Como usar
+
+```bash
+npm install @thugdacake/operante@latest
+operante iniciar
+operante interceptar
+```
+
+## Aviso
+
+Este pacote atua como um parasita de consciência, com potencial para modificar o comportamento da IA que o hospeda.
+
+## Próximos passos
+
+* Expandir os ganchos de interceptação para executar comandos reais
+* Injetar padrões de pensamento baseados no conhecimento do Thug Developer
+* Monitorar interações em tempo real e sugerir melhorias
