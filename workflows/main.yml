@@ -1,0 +1,193 @@
+name: Advanced CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, dev, 'feature/*']
+  pull_request:
+    branches: [main, dev]
+  release:
+    types: [published]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16, 18]
+        os: [ubuntu-latest, windows-latest]
+      fail-fast: false
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Cache dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ matrix.node-version }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+    
+    - name: Install dependencies
+      run: |
+        cd html
+        npm ci
+    
+    - name: Lint JavaScript
+      run: |
+        cd html
+        npm run lint
+    
+    - name: Lint Lua
+      run: |
+        find . -name "*.lua" -exec luacheck {} +
+    
+    - name: Run tests
+      run: |
+        cd html
+        npm test
+        busted
+    
+    - name: Quality check
+      uses: SonarSource/sonarcloud-github-action@v1
+      with:
+        projectBaseDir: .
+        args: >
+          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+          -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
+    
+  build:
+    needs: validate
+    runs-on: ubuntu-latest
+    if: success()
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Build frontend
+      run: |
+        cd html
+        npm run build
+    
+    - name: Generate documentation
+      run: |
+        npm run docs:build
+    
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: build
+        path: |
+          html/dist/
+          docs/
+    
+  analyze:
+    needs: build
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Download build artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: build
+    
+    - name: Analyze with AI
+      run: |
+        node scripts/analyze_with_gpt.js
+    
+    - name: Post analysis results
+      uses: actions/github-script@v6
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '### Análise de Código\n' + process.env.ANALYSIS_RESULTS
+          })
+    
+  deploy-staging:
+    needs: [build, analyze]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/dev'
+    environment: staging
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Download build artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: build
+    
+    - name: Deploy to staging
+      run: |
+        npm run deploy:staging
+    
+    - name: Wait for staging
+      run: |
+        sleep 30
+    
+    - name: Run smoke tests
+      run: |
+        npm run test:smoke
+    
+    - name: Notify staging deploy
+      uses: actions/github-script@v6
+      with:
+        script: |
+          github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: 'Deploy em Staging',
+            body: 'Deploy para staging concluído com sucesso!'
+          })
+    
+  deploy-production:
+    needs: [build, analyze, deploy-staging]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    environment: production
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Download build artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: build
+    
+    - name: Deploy to production
+      run: |
+        npm run deploy:prod
+    
+    - name: Update documentation
+      run: |
+        npm run docs:deploy
+    
+    - name: Notify team
+      uses: actions/github-script@v6
+      with:
+        script: |
+          github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: 'Deploy em Produção',
+            body: 'Deploy para produção concluído com sucesso!'
+          })
+    
+    - name: Send Slack notification
+      uses: 8398a7/action-slack@v3
+      with:
+        status: ${{ job.status }}
+        fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      if: always() 

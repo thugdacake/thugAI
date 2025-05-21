@@ -1,0 +1,50 @@
+flowchart TD
+    %% Início do CI/CD
+    Start([Push/PR]) --> |Trigger| CI[GitHub Actions]
+    
+    %% Jobs do CI
+    CI --> |Paralelo| Test[Testes]
+    CI --> |Paralelo| Lint[Linting]
+    CI --> |Paralelo| Security[Segurança]
+    
+    %% Testes
+    Test --> |Frontend| Jest[Jest]
+    Test --> |Backend| Busted[Busted]
+    
+    %% Linting
+    Lint --> |Frontend| ESLint[ESLint]
+    Lint --> |Backend| LuaLS[LuaLS]
+    
+    %% Segurança
+    Security --> |Scan| SonarQube[SonarQube]
+    Security --> |Deps| Audit[Audit de Dependências]
+    
+    %% Build
+    Jest --> Build[Build]
+    Busted --> Build
+    ESLint --> Build
+    LuaLS --> Build
+    SonarQube --> Build
+    Audit --> Build
+    
+    %% Deploy
+    Build --> |Sucesso| Deploy[Deploy]
+    Deploy --> |Produção| Prod[Produção]
+    Deploy --> |Staging| Staging[Staging]
+    
+    %% Documentação
+    Prod --> Docs[Documentação]
+    Staging --> Docs
+    
+    %% Feedback
+    Docs --> |Atualiza| GitHub[GitHub]
+    GitHub --> |Notifica| Team[Equipe]
+    
+    %% Estilos
+    classDef job fill:#f9f,stroke:#333,stroke-width:2px
+    classDef tool fill:#bbf,stroke:#333,stroke-width:2px
+    classDef env fill:#bfb,stroke:#333,stroke-width:2px
+    
+    class Start,CI,Test,Lint,Security,Build,Deploy,Docs job
+    class Jest,Busted,ESLint,LuaLS,SonarQube,Audit tool
+    class Prod,Staging,GitHub,Team env 

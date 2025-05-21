@@ -1,0 +1,46 @@
+flowchart TD
+    %% Início do Projeto
+    Start([Início do Projeto]) --> |Prompt/Necessidade| Analysis[Análise de Requisitos]
+    
+    %% Análise
+    Analysis --> |Gera| PRD[Elaboração de PRD]
+    PRD --> |Aprovado| Architecture[Definição de Arquitetura]
+    
+    %% Arquitetura
+    Architecture --> |Define| Components[Componentes]
+    Architecture --> |Define| Events[Eventos]
+    Architecture --> |Define| APIs[APIs]
+    
+    %% Prototipação
+    Components --> |Base para| Prototype[Protótipo / Wireframe]
+    Events --> |Define| Prototype
+    Prototype --> |Gera| UI[UI/UX]
+    
+    %% Implementação
+    UI --> |Aprovado| Implementation[Implementação]
+    Implementation --> |Frontend| React[React/TS]
+    Implementation --> |Backend| Lua[Lua/FiveM]
+    Implementation --> |Database| MySQL[oxmysql]
+    
+    %% Testes
+    React --> |Testa| Testing[Testes & QA]
+    Lua --> |Testa| Testing
+    MySQL --> |Testa| Testing
+    
+    %% Deploy
+    Testing --> |Aprovado| Deployment[Deploy & Documentação]
+    Deployment --> |CI/CD| GitHub[GitHub Actions]
+    Deployment --> |Docs| Docusaurus[Docusaurus]
+    
+    %% Feedback Loop
+    Docusaurus --> |Feedback| Review[Revisão & Iteração]
+    Review --> |Melhorias| Analysis
+    
+    %% Estilos
+    classDef phase fill:#f9f,stroke:#333,stroke-width:2px
+    classDef artifact fill:#bbf,stroke:#333,stroke-width:2px
+    classDef tool fill:#bfb,stroke:#333,stroke-width:2px
+    
+    class Start,Analysis,Architecture,Prototype,Implementation,Testing,Deployment,Review phase
+    class PRD,Components,Events,APIs,UI artifact
+    class React,Lua,MySQL,GitHub,Docusaurus tool 
