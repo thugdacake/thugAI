@@ -43,4 +43,11 @@ flowchart TD
     
     class Start,Analysis,Architecture,Prototype,Implementation,Testing,Deployment,Review phase
     class PRD,Components,Events,APIs,UI artifact
-    class React,Lua,MySQL,GitHub,Docusaurus tool 
+    class React,Lua,MySQL,GitHub,Docusaurus tool
+
+    subgraph Inicialização do Plugin
+        H[Selecionar Template] --> I[Criar Estrutura do Projeto]
+        I --> J[Configurar Dependências]
+        J --> K[Inicializar Git]
+        K --> L[Commit Inicial]
+    end 
