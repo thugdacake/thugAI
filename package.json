@@ -23,7 +23,7 @@
   "author": "Thug Developer",
   "license": "MIT",
   "dependencies": {
-    "chalk": "^4.1.2",
+    "chalk": "^5.4.1",
     "commander": "^8.3.0",
     "fs-extra": "^10.0.0",
     "inquirer": "^8.2.0",
