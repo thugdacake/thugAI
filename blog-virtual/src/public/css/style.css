@@ -1,0 +1,242 @@
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --text-color: #333;
+    --light-gray: #f5f6fa;
+    --border-color: #dcdde1;
+    --success-color: #2ecc71;
+    --error-color: #e74c3c;
+    --warning-color: #f1c40f;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-gray);
+}
+
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    margin-bottom: 1rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: var(--secondary-color);
+}
+
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* Alertas */
+.alert {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+}
+
+.alert-success {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.alert-error {
+    background-color: var(--error-color);
+    color: white;
+}
+
+.alert-warning {
+    background-color: var(--warning-color);
+    color: var(--text-color);
+}
+
+/* Formulários */
+.auth-form {
+    max-width: 400px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+button {
+    background: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: var(--primary-color);
+}
+
+/* Posts */
+.posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.post-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+}
+
+.post-card h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.post-meta {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.post-tags {
+    margin-top: 1rem;
+}
+
+.tag {
+    background: var(--secondary-color);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
+}
+
+/* Área Administrativa */
+.admin-posts {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.post-item {
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 0;
+}
+
+.post-item:last-child {
+    border-bottom: none;
+}
+
+.post-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    border: none;
+    font-size: 0.9rem;
+}
+
+.btn-view {
+    background-color: var(--secondary-color);
+}
+
+.btn-edit {
+    background-color: var(--warning-color);
+    color: var(--text-color);
+}
+
+.btn-delete {
+    background-color: var(--error-color);
+}
+
+.delete-form {
+    display: inline;
+}
+
+/* Comentários */
+.comments {
+    margin-top: 3rem;
+}
+
+.comment {
+    background: var(--light-gray);
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.comment-form {
+    margin-top: 2rem;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    background: var(--primary-color);
+    color: white;
+    margin-top: 3rem;
+} 

@@ -1,0 +1,26 @@
+# Arquivos de desenvolvimento
+.github/
+.vscode/
+__tests__/
+coverage/
+docs/
+examples/
+scripts/
+
+# Arquivos de configuração
+.editorconfig
+.eslintrc.json
+.gitignore
+.prettierrc
+jest.config.js
+commitlint.config.js
+.releaserc.json
+codecov.yml
+dependabot.yml
+
+# Outros
+*.log
+*.md
+!README.md
+!LICENSE
+!CHANGELOG.md

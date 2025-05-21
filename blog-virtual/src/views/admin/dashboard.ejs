@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo - Blog Virtual</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Painel Administrativo</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/admin">Dashboard</a></li>
+                <li><a href="/admin/posts/new">Novo Post</a></li>
+                <li><a href="/logout">Sair</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <% if (success && success.length > 0) { %>
+            <div class="alert alert-success">
+                <%= success %>
+            </div>
+        <% } %>
+
+        <section class="admin-posts">
+            <h2>Gerenciar Posts</h2>
+            
+            <div class="posts-list">
+                <% posts.forEach(post => { %>
+                    <div class="post-item">
+                        <h3><%= post.title %></h3>
+                        <div class="post-meta">
+                            <span>Status: <%= post.status %></span>
+                            <span>Data: <%= new Date(post.createdAt).toLocaleDateString() %></span>
+                        </div>
+                        <div class="post-actions">
+                            <a href="/post/<%= post._id %>" class="btn btn-view">Ver</a>
+                            <a href="/admin/posts/<%= post._id %>/edit" class="btn btn-edit">Editar</a>
+                            <form action="/admin/posts/<%= post._id %>?_method=DELETE" method="POST" class="delete-form">
+                                <button type="submit" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir este post?')">Excluir</button>
+                            </form>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Powered by Cérebro Operante</p>
+    </footer>
+</body>
+</html> 

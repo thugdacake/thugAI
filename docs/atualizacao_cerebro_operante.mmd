@@ -1,0 +1,17 @@
+flowchart TD
+  Start([Início da IA])
+  BootMensagem["Enviar mensagem de boas-vindas\n[Boot] Bem-vindo ao Cérebro Operante"]
+  AtivaCerebro["Ativa núcleo Cérebro Operante"]
+  InterceptaComando["Intercepta comandos da IA"]
+  ProcessaNoModo["Processa comandos\ncom lógica Thug Developer"]
+  FeedbackHumano["Loop de feedback humano"]
+  ValidaAcao["Valida ação com usuário"]
+  ExecutaAcao["Executa ação autorizada"]
+  BloqueiaFuga["Bloqueia tentativa de fuga\nfora do núcleo"]
+  Fim([Fim do fluxo])
+
+  Start --> BootMensagem --> AtivaCerebro --> InterceptaComando
+  InterceptaComando --> ProcessaNoModo --> FeedbackHumano
+  FeedbackHumano --> ValidaAcao --> ExecutaAcao --> InterceptaComando
+  ValidaAcao -->|ação não autorizada| BloqueiaFuga --> InterceptaComando
+  ExecutaAcao --> Fim

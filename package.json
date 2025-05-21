@@ -1,46 +1,69 @@
 {
-  "name": "cerebro-operante",
-  "version": "1.0.0",
-  "description": "Framework de Produção Universal para desenvolvimento de software",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "name": "@thugdacake/operante",
+  "version": "1.0.1",
+  "description": "Framework Instrutor que Pensa com Você (e Nunca por Você)",
+  "main": "src/core/agent-engine.js",
   "scripts": {
-    "setup": "chmod +x scripts/setup.sh && ./scripts/setup.sh",
-    "docs": "chmod +x scripts/generate-docs.sh && ./scripts/generate-docs.sh",
-    "build": "tsc",
-    "dev": "ts-node src/index.ts",
+    "start": "node src/test-cerebro.js",
     "test": "jest",
-    "lint": "eslint . --ext .ts",
-    "format": "prettier --write \"src/**/*.ts\"",
-    "validate": "npm run lint && npm run test",
-    "prepare": "husky install"
+    "lint": "eslint src/**/*.js",
+    "docs": "node src/core/doc-creator.js",
+    "prepare": "husky install",
+    "commit": "git-cz",
+    "release": "semantic-release"
   },
   "keywords": [
-    "framework",
+    "ai",
     "automation",
-    "ci-cd",
-    "development",
-    "workflow"
+    "framework",
+    "mind",
+    "brain",
+    "thug"
   ],
-  "author": "Cérebro Operante",
+  "author": "Thug Developer",
   "license": "MIT",
   "dependencies": {
-    "@types/node": "^18.0.0",
-    "typescript": "^4.9.0",
-    "dotenv": "^16.0.0",
-    "commander": "^9.0.0",
-    "chalk": "^4.1.0",
-    "inquirer": "^8.0.0"
+    "chalk": "^4.1.2",
+    "commander": "^8.3.0",
+    "fs-extra": "^10.0.0",
+    "inquirer": "^8.2.0",
+    "ora": "^5.4.1"
   },
   "devDependencies": {
-    "@types/jest": "^29.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^5.0.0",
-    "eslint": "^8.0.0",
+    "@commitlint/cli": "^17.0.0",
+    "@commitlint/config-conventional": "^17.0.0",
+    "@semantic-release/changelog": "^6.0.0",
+    "@semantic-release/git": "^10.0.0",
+    "@semantic-release/github": "^8.0.0",
+    "@semantic-release/npm": "^9.0.0",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.5.0",
     "husky": "^8.0.0",
-    "jest": "^29.0.0",
-    "prettier": "^2.0.0",
-    "ts-jest": "^29.0.0",
-    "ts-node": "^10.0.0"
+    "jest": "^27.3.1",
+    "semantic-release": "^19.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "cli.js",
+    "src/",
+    "README.md",
+    "LICENSE",
+    "templates/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thugdacake/thugAI.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thugdacake/thugAI/issues"
+  },
+  "homepage": "https://github.com/thugdacake/thugAI#readme",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
-} 
+}

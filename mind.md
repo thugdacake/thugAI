@@ -614,3 +614,28 @@ act push -P ubuntu-latest=nektos/act-environments-ubuntu:18.04
 - O plugin deve ser testado automaticamente via workflows de CI/CD.
 - O plugin deve ser documentado de forma clara e acessível, permitindo que qualquer IA ou desenvolvedor possa entender e contribuir.
 - O plugin deve ser escalável e modular, permitindo fácil manutenção e evolução. 
+
+# Leader
+Defina a visão suprema do Cérebro Operante: unificar humanos e IA numa orquestra de eficiência máxima.
+Mapeie riscos e barreiras que podem ferrar a missão.
+Trace a estratégia para manter o controle humano absoluto no comando.
+
+# Manager
+Estruture o roadmap dividido em sprints semanais.
+Priorize entregas que validem valor real pro usuário.
+Implemente checkpoints para alinhamento e feedback contínuo.
+
+# Architect
+Desenhe uma arquitetura modular e plugável.
+Priorize escalabilidade, fácil manutenção e integração nativa com IA interna.
+Proponha padrões para documentação automática e versionamento inteligente.
+
+# Engineer
+Implemente core de interpretação do `mind.md`.
+Desenvolva sistemas de execução automática e logging detalhado.
+Garanta testes unitários e integração com pipeline CI/CD.
+
+# Analyst
+Defina métricas-chave para produtividade, qualidade e aderência ao escopo.
+Implemente coleta de dados anonimizados para análise.
+Gere relatórios automatizados com sugestões baseadas em dados reais. 
