@@ -1,14 +1,25 @@
-module.exports = {
+export default {
+  transform: {
+    '^.+\\.(t|j)sx?$': ['@swc/jest']
+  },
   testEnvironment: 'node',
-  testMatch: ['**/__tests__/**/*.js', '**/?(*.)+(spec|test).js'],
+  moduleNameMapper: {
+    '^(\\.{1,2}/.*)\\.js$': '$1'
+  },
+  transformIgnorePatterns: [],
+  verbose: true,
   collectCoverage: true,
   coverageDirectory: 'coverage',
-  coverageReporters: ['text', 'lcov'],
+  testMatch: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  coverageReporters: ['text', 'lcov', 'html'],
   coveragePathIgnorePatterns: [
     '/node_modules/',
     '/coverage/',
-    '/docs/'
+    '/docs/',
+    '/dist/',
+    '/build/'
   ],
-  verbose: true,
-  testTimeout: 10000
+  testTimeout: 10000,
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js']
 };

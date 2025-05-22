@@ -1,0 +1,37 @@
+graph TD
+  subgraph Testes
+    T1["Testes ESM quebrados"]
+    T2["Mocks incompatíveis"]
+    T3["Cobertura insuficiente"]
+  end
+
+  subgraph Core
+    C1["Exports inconsistentes"]
+    C2["Funções não exportadas"]
+    C3["Configuração duplicada"]
+  end
+
+  subgraph Configuração
+    J1["Jest mal configurado"]
+    J2["Opções redundantes"]
+  end
+
+  T1 --> C1
+  T1 --> C2
+  T2 --> C1
+  T2 --> J1
+  T3 --> C2
+  C1 --> J1
+  C2 --> J1
+  J1 --> J2
+  C3 --> J1
+  C3 --> T1
+
+  style T1 fill:#fbb,stroke:#f66,stroke-width:2px
+  style T2 fill:#fbb,stroke:#f66,stroke-width:2px
+  style T3 fill:#ffd,stroke:#cc0,stroke-width:2px
+  style C1 fill:#fbb,stroke:#f66,stroke-width:2px
+  style C2 fill:#ffd,stroke:#cc0,stroke-width:2px
+  style C3 fill:#ffd,stroke:#cc0,stroke-width:2px
+  style J1 fill:#fbb,stroke:#f66,stroke-width:2px
+  style J2 fill:#ffd,stroke:#cc0,stroke-width:2px

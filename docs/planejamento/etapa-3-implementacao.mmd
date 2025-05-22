@@ -1,0 +1,58 @@
+graph TD
+    A[Início] --> B[Implementação do Core]
+    B --> C[Lógica de Processamento]
+    B --> D[Testes Unitários]
+
+    C --> C1[Blueprint]
+    C --> C2[Documentação]
+    C --> C3[Prompt]
+    C --> C4[Comando]
+
+    D --> D1[Testes Blueprint]
+    D --> D2[Testes Documentação]
+    D --> D3[Testes Prompt]
+    D --> D4[Testes Comando]
+
+    E[Implementação do CLI] --> F[Interface de Comando]
+    E --> G[Testes CLI]
+
+    F --> F1[Comandos Básicos]
+    F --> F2[Comandos Processamento]
+    F --> F3[Comandos Configuração]
+
+    G --> G1[Testes Comandos]
+    G --> G2[Testes Integração]
+
+    H[Documentação] --> I[Documentação Técnica]
+    H --> J[Documentação Usuário]
+
+    I --> I1[API Reference]
+    I --> I2[Guias]
+
+    J --> J1[Tutoriais]
+    J --> J2[Referência]
+
+    K[Build e Deploy] --> L[Configuração Build]
+    K --> M[Deploy]
+
+    L --> L1[Scripts Build]
+    L --> L2[Otimizações]
+
+    M --> M1[NPM]
+    M --> M2[Documentação]
+
+    N[Qualidade] --> O[Linting e Formatação]
+    N --> P[Testes]
+
+    O --> O1[ESLint]
+    O --> O2[Prettier]
+
+    P --> P1[Cobertura]
+    P --> P2[Performance]
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style E fill:#bbf,stroke:#333,stroke-width:2px
+    style H fill:#bbf,stroke:#333,stroke-width:2px
+    style K fill:#bbf,stroke:#333,stroke-width:2px
+    style N fill:#bbf,stroke:#333,stroke-width:2px

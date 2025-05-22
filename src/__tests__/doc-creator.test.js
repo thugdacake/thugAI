@@ -1,9 +1,14 @@
-const fs = require('fs');
-const path = require('path');
-const DocCreator = require('../core/doc-creator');
+import { jest } from '@jest/globals';
 
-// Mock do fs
-jest.mock('fs');
+const mockFs = {
+  existsSync: jest.fn(),
+  mkdirSync: jest.fn(),
+  writeFileSync: jest.fn(),
+};
+
+await jest.unstable_mockModule('fs', () => mockFs);
+
+import { DocCreator } from '../core/doc-creator.js';
 
 describe('DocCreator', () => {
   let docCreator;
@@ -13,9 +18,9 @@ describe('DocCreator', () => {
     jest.clearAllMocks();
 
     // Configura o mock do fs
-    fs.existsSync.mockReturnValue(false);
-    fs.mkdirSync.mockImplementation(() => {});
-    fs.writeFileSync.mockImplementation(() => {});
+    mockFs.existsSync.mockReturnValue(false);
+    mockFs.mkdirSync.mockImplementation(() => {});
+    mockFs.writeFileSync.mockImplementation(() => {});
 
     // Cria uma nova instância do DocCreator
     docCreator = new DocCreator();
@@ -35,9 +40,9 @@ describe('DocCreator', () => {
 
     await docCreator.createDocument('prd', prdData);
 
-    expect(fs.mkdirSync).toHaveBeenCalled();
-    expect(fs.writeFileSync).toHaveBeenCalled();
-    expect(fs.writeFileSync.mock.calls[0][1]).toContain('Teste PRD');
+    expect(mockFs.mkdirSync).toHaveBeenCalled();
+    expect(mockFs.writeFileSync).toHaveBeenCalled();
+    expect(mockFs.writeFileSync.mock.calls[0][1]).toContain('Teste PRD');
   });
 
   test('deve criar documentação de arquitetura corretamente', async () => {
@@ -62,9 +67,9 @@ describe('DocCreator', () => {
 
     await docCreator.createDocument('architecture', archData);
 
-    expect(fs.mkdirSync).toHaveBeenCalled();
-    expect(fs.writeFileSync).toHaveBeenCalled();
-    expect(fs.writeFileSync.mock.calls[0][1]).toContain('Teste Arquitetura');
+    expect(mockFs.mkdirSync).toHaveBeenCalled();
+    expect(mockFs.writeFileSync).toHaveBeenCalled();
+    expect(mockFs.writeFileSync.mock.calls[0][1]).toContain('Teste Arquitetura');
   });
 
   test('deve criar documentação de código corretamente', async () => {
@@ -91,9 +96,9 @@ describe('DocCreator', () => {
 
     await docCreator.createDocument('code', codeData);
 
-    expect(fs.mkdirSync).toHaveBeenCalled();
-    expect(fs.writeFileSync).toHaveBeenCalled();
-    expect(fs.writeFileSync.mock.calls[0][1]).toContain('Teste Código');
+    expect(mockFs.mkdirSync).toHaveBeenCalled();
+    expect(mockFs.writeFileSync).toHaveBeenCalled();
+    expect(mockFs.writeFileSync.mock.calls[0][1]).toContain('Teste Código');
   });
 
   test('deve lançar erro para tipo de documento inválido', async () => {
@@ -108,14 +113,14 @@ describe('DocCreator', () => {
   });
 
   test('deve criar diretório se não existir', async () => {
-    fs.existsSync.mockReturnValue(false);
+    mockFs.existsSync.mockReturnValue(false);
     await docCreator.createDocument('prd', { title: 'Teste' });
-    expect(fs.mkdirSync).toHaveBeenCalledWith(docCreator.outputDir, { recursive: true });
+    expect(mockFs.mkdirSync).toHaveBeenCalledWith(docCreator.outputDir, { recursive: true });
   });
 
   test('não deve criar diretório se já existir', async () => {
-    fs.existsSync.mockReturnValue(true);
+    mockFs.existsSync.mockReturnValue(true);
     await docCreator.createDocument('prd', { title: 'Teste' });
-    expect(fs.mkdirSync).not.toHaveBeenCalled();
+    expect(mockFs.mkdirSync).not.toHaveBeenCalled();
   });
-}); 
+});

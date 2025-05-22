@@ -1,8 +1,8 @@
-const fs = require('fs');
-const path = require('path');
-const chalk = require('chalk');
+import fs from 'fs';
+import path from 'path';
+import chalk from 'chalk';
 
-class DocCreator {
+export class DocCreator {
   constructor(outputDir = './docs') {
     this.outputDir = outputDir;
     this.templates = {
@@ -77,9 +77,7 @@ ${data.risks.map(risk => `- ${risk}`).join('\n')}
 ${data.overview}
 
 ## Componentes
-${data.components.map(comp => `### ${comp.name}
-${comp.description}
-`).join('\n')}
+${data.components.map(comp => `### ${comp.name}\n${comp.description}\n`).join('\n')}
 
 ## Fluxo de Dados
 ${data.dataFlow}
@@ -105,9 +103,9 @@ ${data.securityConsiderations}
 ${data.description}
 
 ## Uso
-\`\`\`${data.language}
+\\u00a0\u0060\u0060\u0060${data.language}
 ${data.usage}
-\`\`\`
+\u0060\u0060\u0060
 
 ## Parâmetros
 ${data.parameters.map(param => `- \`${param.name}\`: ${param.description}`).join('\n')}
@@ -116,11 +114,7 @@ ${data.parameters.map(param => `- \`${param.name}\`: ${param.description}`).join
 ${data.returnValue}
 
 ## Exemplos
-${data.examples.map(example => `### ${example.title}
-\`\`\`${data.language}
-${example.code}
-\`\`\`
-`).join('\n')}
+${data.examples.map(example => `### ${example.title}\n\u0060\u0060\u0060${data.language}\n${example.code}\n\u0060\u0060\u0060\n`).join('\n')}
 
 ## Notas
 ${data.notes}
@@ -136,5 +130,3 @@ ${data.notes}
     return `${type}-${sanitizedTitle}-${timestamp}.md`;
   }
 }
-
-module.exports = DocCreator; 

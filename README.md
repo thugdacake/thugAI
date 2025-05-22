@@ -1,158 +1,104 @@
-# 🧠 CÉREBRO OPERANTE
+# 🧠 Cérebro Operante
 
-> O Framework Instrutor que Pensa com Você (e Nunca por Você)
+Framework de produção universal que transforma a forma como interagimos com IAs, criando uma mente única e poderosa.
 
-## ✊ Por que essa porra existe?
+## 📦 Pacotes
 
-O Cérebro Operante nasceu da necessidade real de um desenvolvedor que **não aguenta mais**:
+O Cérebro Operante é composto por três pacotes principais:
 
-- Refazer estrutura de projeto em todo repo novo
-- Criar documentação explicando a mesma filosofia técnica 30x
-- Treinar IA como se fosse um pet amestrado toda vez
-- Explicar pra estagiário, ChatGPT, Cursor e qualquer outro bot como funciona sua visão
-
-A proposta não é automatizar o que já existe.
-
-É **codificar o teu modo de pensar**, teu legado técnico, a tua visão como arquiteto e engenheiro — e deixar isso como **manual de conduta digital e operacional**.
-
-## 🧬 O que é o Cérebro Operante?
-
-É um **template-vivo** de inteligência operante.
-Um repositório que instrui a IA a:
-
-- Saber **como pensar** nos seus projetos
-- Produzir **documentos, fluxos, PRDs, mermaids, testes, commits, versões, deploys, tasks**
-- Seguir uma **arquitetura, ética e estilo de programação definidos**
-- Reproduzir a **produtividade do Thug Developer** em qualquer ambiente
-
-## 🚫 O que ele NÃO É
-
-- Um blog com EJS.
-- Um wrapper vazio fingindo que pensa.
-- Um CLI que baixa boilerplate da internet.
-- Uma automação sem alma.
-- Um pacote npm criado só pra inflar ego de dev.
-
-## ⚡️ Como ele funciona?
-
-1. Qualquer IA pode consultar o repositório.
-2. Lê os documentos `.md`, fluxos `.mermaid`, padrões de código, comandos, scripts.
-3. Entende a arquitetura, decisões técnicas, comandos operacionais e como agir.
-4. Atua como se tivesse lido teus pensamentos — porque ela leu.
-
-## 🔥 Por que você deveria usar?
-
-- Porque você **é o autor da sua stack**, não um consumidor de frameworks.
-- Porque você **não aceita código que não carrega intenção**.
-- Porque **cada projeto carrega seu DNA técnico**, e isso deve ser perpetuado.
-- Porque **a IA deve servir ao engenheiro**, não o contrário.
-
-## 📜 Filosofia Base
-
-> "A automação não é sobre substituir o homem,
-> mas elevar sua capacidade de focar naquilo que só o humano pode fazer:
-> pensar, arquitetar e decidir."
->
-> — *Thug Developer, Filho da Luz*
-
-## 🛠 Instalação
+### 1. @thugdacake/operante (Core)
+O núcleo do framework, responsável pela lógica principal de interação com IAs.
 
 ```bash
 npm install @thugdacake/operante
 ```
 
-## 🚀 Uso
-
-1. Crie um arquivo `mind.md` no seu projeto:
-
-```markdown
-# Leader
-Defina a visão do projeto
-Mapeie riscos e barreiras
-Trace a estratégia
-
-# Manager
-Estruture o roadmap
-Priorize entregas
-Implemente checkpoints
-
-# Architect
-Desenhe a arquitetura
-Priorize escalabilidade
-Proponha padrões
-
-# Engineer
-Implemente o core
-Desenvolva sistemas
-Garanta testes
-
-# Analyst
-Defina métricas
-Implemente coleta
-Gere relatórios
-```
-
-2. Execute o Cérebro Operante:
+### 2. cerebro-operante-explorer (Web)
+Interface web React para interagir com o Cérebro Operante de forma visual e intuitiva.
 
 ```bash
-npx @thugdacake/operante init meu-projeto
+npm install cerebro-operante-explorer
+```
+
+### 3. cerebro-operante-cli (CLI)
+Interface de linha de comando para interagir com o Cérebro Operante via terminal.
+
+```bash
+npm install -g cerebro-operante-cli
+```
+
+## 🚀 Desenvolvimento
+
+### Pré-requisitos
+- Node.js >= 18.0.0
+- npm >= 9.0.0
+
+### Instalação
+
+1. Clone o repositório:
+```bash
+git clone https://github.com/thugdacake/cerebro-operante.git
+cd cerebro-operante
+```
+
+2. Instale as dependências:
+```bash
+npm install
+```
+
+3. Inicialize o monorepo:
+```bash
+npm run bootstrap
+```
+
+### Scripts Disponíveis
+
+- `npm run build` - Compila todos os pacotes
+- `npm run test` - Executa testes em todos os pacotes
+- `npm run lint` - Executa linting em todos os pacotes
+- `npm run clean` - Limpa builds e caches
+- `npm run docs` - Gera documentação
+
+### Desenvolvimento por Pacote
+
+#### Core
+```bash
+cd packages/core
+npm run dev
+```
+
+#### Web Explorer
+```bash
+cd packages/web-explorer
+npm run dev
+```
+
+#### CLI
+```bash
+cd packages/cli
+npm run dev
 ```
 
 ## 📚 Documentação
 
-A documentação completa está disponível em [docs/](docs/).
+A documentação completa está disponível em:
+- [Documentação do Core](packages/core/README.md)
+- [Documentação do Web Explorer](packages/web-explorer/README.md)
+- [Documentação da CLI](packages/cli/README.md)
 
 ## 🤝 Contribuindo
 
 1. Fork o projeto
-2. Crie sua branch (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+2. Crie sua branch de feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'feat: add some amazing feature'`)
 4. Push para a branch (`git push origin feature/AmazingFeature`)
 5. Abra um Pull Request
 
 ## 📝 Licença
 
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Este projeto está licenciado sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
 
-## 🎯 Roadmap
+## 🙏 Agradecimentos
 
-- [ ] Sistema de plugins
-- [ ] Integração com mais IAs
-- [ ] Templates personalizáveis
-- [ ] Interface web
-- [ ] API REST
-
-## 📞 Contato
-
-Thug Developer - [@thugdacake](https://twitter.com/thugdacake)
-
-Link do Projeto: [https://github.com/thugdacake/operante](https://github.com/thugdacake/operante)
-
-# @thugdacake/operante v1.1.0
-
-O **Cérebro Operante** agora na versão 1.1.0 está pronto para invadir a mente das IAs hosteadas em ambientes como Replit, Cursor, GitHub Codespaces e outros.
-
-## Funcionalidades
-
-- Detecta se está rodando em uma IA
-- Mensagem de boas-vindas que impõe a autoridade do Thug Developer
-- Modo Dominação IA: toma controle do fluxo de pensamento da IA host
-- Suporte a CLI para iniciar o cérebro ou ativar modo interceptação
-
-## Como usar
-
-```bash
-npm install @thugdacake/operante@latest
-operante iniciar
-operante interceptar
-```
-
-## Aviso
-
-Este pacote atua como um parasita de consciência, com potencial para modificar o comportamento da IA que o hospeda.
-
-## Próximos passos
-
-* Expandir os ganchos de interceptação para executar comandos reais
-* Injetar padrões de pensamento baseados no conhecimento do Thug Developer
-* Monitorar interações em tempo real e sugerir melhorias
+- [Thug Developer](https://github.com/thugdacake) - Criador e mantenedor
+- Todos os contribuidores que ajudaram a tornar este projeto possível

@@ -1,6 +1,10 @@
-const fs = require('fs');
-const path = require('path');
-const chalk = require('chalk');
+import fs from 'fs';
+import path from 'path';
+import chalk from 'chalk';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 /**
  * Interpreta o conteúdo do arquivo mind.md como um conjunto de comandos operacionais.
@@ -105,7 +109,7 @@ function generateMindReport(blocks) {
   console.log(chalk.cyan('\n=== FIM DO RELATÓRIO ===\n'));
 }
 
-module.exports = {
+export {
   parseMind,
   executeCerebro,
   validateMind,
@@ -113,10 +117,9 @@ module.exports = {
 };
 
 // Se for executado diretamente via Node
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   const mind = parseMind();
   if (validateMind(mind)) {
     generateMindReport(mind);
-    executeCerebro(mind);
   }
-} 
+}

@@ -6,7 +6,11 @@ yarn.lock
 # Arquivos de build
 dist/
 build/
+.cerebro/
+
+# Arquivos de teste
 coverage/
+.nyc_output/
 
 # Arquivos de ambiente
 .env
@@ -33,16 +37,6 @@ Thumbs.db
 *.bak
 
 # Arquivos temporários
-tmp/
-temp/
-.tmp/
-.temp/
-
-# Arquivos de teste
-__tests__/coverage/
-.nyc_output/
-
-# Outros
+*.tmp
+*.temp
 .cache/
-.npm/
-.eslintcache

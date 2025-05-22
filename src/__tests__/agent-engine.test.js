@@ -1,40 +1,58 @@
-const fs = require('fs');
-const path = require('path');
-const AgentEngine = require('../core/agent-engine');
+import { jest } from '@jest/globals';
 
-// Mock do fs
-jest.mock('fs');
+const mockFs = {
+  existsSync: jest.fn(() => true),
+  readFileSync: jest.fn(),
+  writeFileSync: jest.fn(),
+  mkdirSync: jest.fn(),
+};
+
+await jest.unstable_mockModule('fs', () => mockFs);
+
+// Mock global de process.exit
+const originalProcessExit = process.exit;
+beforeAll(() => {
+  process.exit = jest.fn();
+});
+afterAll(() => {
+  process.exit = originalProcessExit;
+});
+
+import { AgentEngine } from '../core/agent-engine.js';
+import { parseMind } from '../core/mind-interpreter.js';
+import chalk from 'chalk';
 
 describe('AgentEngine', () => {
   let engine;
+  const mockMindContent = `
+    # Leader
+    Instrução 1
+    Instrução 2
+
+    # Manager
+    Instrução 3
+    Instrução 4
+
+    # Architect
+    Instrução 5
+    Instrução 6
+
+    # Engineer
+    Instrução 7
+    Instrução 8
+
+    # Analyst
+    Instrução 9
+    Instrução 10
+  `;
 
   beforeEach(() => {
     // Limpa todos os mocks
     jest.clearAllMocks();
 
     // Configura o mock do fs
-    fs.existsSync.mockReturnValue(true);
-    fs.readFileSync.mockReturnValue(`
-      # Leader
-      Instrução 1
-      Instrução 2
-
-      # Manager
-      Instrução 3
-      Instrução 4
-
-      # Architect
-      Instrução 5
-      Instrução 6
-
-      # Engineer
-      Instrução 7
-      Instrução 8
-
-      # Analyst
-      Instrução 9
-      Instrução 10
-    `);
+    mockFs.existsSync.mockReturnValue(true);
+    mockFs.readFileSync.mockReturnValue(mockMindContent);
 
     // Cria uma nova instância do engine
     engine = new AgentEngine();
@@ -47,7 +65,7 @@ describe('AgentEngine', () => {
   });
 
   test('deve lançar erro se mind.md não existir', async () => {
-    fs.existsSync.mockReturnValue(false);
+    mockFs.existsSync.mockReturnValue(false);
     await expect(engine.initialize()).rejects.toThrow();
   });
 
@@ -97,4 +115,4 @@ describe('AgentEngine', () => {
     await engine.processAnalystInstruction(instruction);
     // Adicione aqui as asserções específicas para o Analyst
   });
-}); 
+});

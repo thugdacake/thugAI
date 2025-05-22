@@ -1,0 +1,42 @@
+graph TD
+    subgraph Fase1[Fase 1: Core]
+        A1[SynapseEngine] --> B1[Processamento]
+        B1 --> C1[Cache]
+        C1 --> D1[Salvamento]
+        D1 --> E1[Testes]
+    end
+
+    subgraph Fase2[Fase 2: Web]
+        A2[Componentes] --> B2[Funcionalidades]
+        B2 --> C2[Testes Web]
+    end
+
+    subgraph Fase3[Fase 3: CLI]
+        A3[Comandos] --> B3[Recursos]
+        B3 --> C3[Testes CLI]
+    end
+
+    subgraph Fase4[Fase 4: Docs]
+        A4[Doc Técnica] --> B4[Doc Usuário]
+    end
+
+    subgraph Fase5[Fase 5: Qualidade]
+        A5[Testes] --> B5[CI/CD]
+    end
+
+    subgraph Fase6[Fase 6: Release]
+        A6[Preparação] --> B6[Manutenção]
+    end
+
+    Fase1 --> Fase2
+    Fase2 --> Fase3
+    Fase3 --> Fase4
+    Fase4 --> Fase5
+    Fase5 --> Fase6
+
+    style Fase1 fill:#f9f,stroke:#333,stroke-width:2px
+    style Fase2 fill:#bbf,stroke:#333,stroke-width:2px
+    style Fase3 fill:#bfb,stroke:#333,stroke-width:2px
+    style Fase4 fill:#fbb,stroke:#333,stroke-width:2px
+    style Fase5 fill:#fbf,stroke:#333,stroke-width:2px
+    style Fase6 fill:#bff,stroke:#333,stroke-width:2px

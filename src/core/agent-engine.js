@@ -1,9 +1,9 @@
-const fs = require('fs');
-const path = require('path');
-const chalk = require('chalk');
-const { parseMind } = require('./mind-interpreter');
+import fs from 'fs';
+import path from 'path';
+import chalk from 'chalk';
+import { parseMind } from './mind-interpreter.js';
 
-class AgentEngine {
+export class AgentEngine {
   constructor(mindPath = './mind.md') {
     this.mindPath = mindPath;
     this.agents = {
@@ -26,8 +26,8 @@ class AgentEngine {
     const instructions = parseMind(mind);
 
     // Inicializa cada agente com suas instruções
-    for (const [role, instructions] of Object.entries(instructions)) {
-      await this.initializeAgent(role, instructions);
+    for (const [role, agentInstructions] of Object.entries(instructions)) {
+      await this.initializeAgent(role, agentInstructions);
     }
 
     console.log(chalk.green('\n[✅] Motor de agentes inicializado com sucesso.'));
@@ -35,7 +35,7 @@ class AgentEngine {
 
   async initializeAgent(role, instructions) {
     console.log(chalk.yellow(`\n[${role.toUpperCase()}] Inicializando agente...`));
-    
+
     // Aqui cada agente será inicializado com suas instruções específicas
     this.agents[role] = {
       instructions,
@@ -55,28 +55,28 @@ class AgentEngine {
   async processInstruction(role, instruction) {
     // Cada agente processa suas instruções de forma específica
     switch (role) {
-      case 'leader':
-        await this.processLeaderInstruction(instruction);
-        break;
-      case 'manager':
-        await this.processManagerInstruction(instruction);
-        break;
-      case 'architect':
-        await this.processArchitectInstruction(instruction);
-        break;
-      case 'engineer':
-        await this.processEngineerInstruction(instruction);
-        break;
-      case 'analyst':
-        await this.processAnalystInstruction(instruction);
-        break;
+    case 'leader':
+      await this.processLeaderInstruction(instruction);
+      break;
+    case 'manager':
+      await this.processManagerInstruction(instruction);
+      break;
+    case 'architect':
+      await this.processArchitectInstruction(instruction);
+      break;
+    case 'engineer':
+      await this.processEngineerInstruction(instruction);
+      break;
+    case 'analyst':
+      await this.processAnalystInstruction(instruction);
+      break;
     }
   }
 
   async executeAll() {
     console.log(chalk.cyan('\n[🚀] Iniciando execução de todos os agentes...'));
-    
-    for (const [role, agent] of Object.entries(this.agents)) {
+
+    for (const agent of Object.values(this.agents)) {
       if (agent) {
         await agent.execute();
       }
@@ -111,5 +111,3 @@ class AgentEngine {
     console.log(chalk.blue(`[ANALYST] Processando: ${instruction}`));
   }
 }
-
-module.exports = AgentEngine; 

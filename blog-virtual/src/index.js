@@ -93,7 +93,7 @@ app.get('/logout', (req, res) => {
 });
 
 // Rotas administrativas
-app.get('/admin', isAuthenticated, async (req, res) => {
+app.get('/admin', async (req, res) => {
   try {
     const posts = await operante.blog.getPosts();
     res.render('admin/dashboard', { posts });
@@ -102,11 +102,11 @@ app.get('/admin', isAuthenticated, async (req, res) => {
   }
 });
 
-app.get('/admin/posts/new', isAuthor, (req, res) => {
+app.get('/admin/posts/new', (req, res) => {
   res.render('admin/posts/new');
 });
 
-app.post('/admin/posts', isAuthor, async (req, res) => {
+app.post('/admin/posts', async (req, res) => {
   try {
     await operante.blog.createPost({
       ...req.body,
@@ -119,7 +119,7 @@ app.post('/admin/posts', isAuthor, async (req, res) => {
   }
 });
 
-app.get('/admin/posts/:id/edit', isAuthor, async (req, res) => {
+app.get('/admin/posts/:id/edit', async (req, res) => {
   try {
     const post = await operante.blog.getPost(req.params.id);
     res.render('admin/posts/edit', { post });
@@ -128,7 +128,7 @@ app.get('/admin/posts/:id/edit', isAuthor, async (req, res) => {
   }
 });
 
-app.put('/admin/posts/:id', isAuthor, async (req, res) => {
+app.put('/admin/posts/:id', async (req, res) => {
   try {
     await operante.blog.updatePost(req.params.id, req.body);
     req.flash('success', 'Post atualizado com sucesso');
@@ -138,7 +138,7 @@ app.put('/admin/posts/:id', isAuthor, async (req, res) => {
   }
 });
 
-app.delete('/admin/posts/:id', isAuthor, async (req, res) => {
+app.delete('/admin/posts/:id', async (req, res) => {
   try {
     await operante.blog.deletePost(req.params.id);
     req.flash('success', 'Post excluído com sucesso');
@@ -152,4 +152,4 @@ app.delete('/admin/posts/:id', isAuthor, async (req, res) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Blog Virtual rodando na porta ${PORT}`);
-}); 
+});

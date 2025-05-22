@@ -1,0 +1,58 @@
+flowchart TD
+    A[Início da Etapa 2] --> B[Core: CerebroOperante]
+    B --> C[Web: Componentes React]
+    C --> D[CLI: Comandos]
+    D --> E[Integração]
+    E --> F[Testes]
+    F --> G[Documentação]
+    G --> H[CI/CD]
+
+    subgraph Core
+        B1[CerebroOperante.ts]
+        B2[detectHost()]
+        B3[detectIA()]
+        B4[interceptAI()]
+    end
+
+    subgraph Web
+        C1[CerebroChat.tsx]
+        C2[OperanteExplorer.tsx]
+        C3[LibraryExplorer.tsx]
+        C4[TestPanel.tsx]
+        C5[cerebroApi.ts]
+    end
+
+    subgraph CLI
+        D1[status.js]
+        D2[chat.js]
+        D3[test.js]
+        D4[cerebro-cli.js]
+    end
+
+    subgraph Integração
+        E1[Core + Web]
+        E2[Core + CLI]
+        E3[Web + CLI]
+    end
+
+    subgraph Testes
+        F1[Unitários]
+        F2[Integração]
+        F3[E2E]
+    end
+
+    subgraph CI/CD
+        H1[GitHub Actions]
+        H2[Build]
+        H3[Test]
+        H4[Publish]
+    end
+
+    style A fill:#f9f,stroke:#333,stroke-width:4px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style C fill:#bfb,stroke:#333,stroke-width:2px
+    style D fill:#fbb,stroke:#333,stroke-width:2px
+    style E fill:#fbf,stroke:#333,stroke-width:2px
+    style F fill:#bff,stroke:#333,stroke-width:2px
+    style G fill:#ffb,stroke:#333,stroke-width:2px
+    style H fill:#fbf,stroke:#333,stroke-width:2px

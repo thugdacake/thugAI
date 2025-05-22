@@ -1,17 +1,17 @@
 const config = {
   // Configurações do projeto
-  env: 'development',
-  port: 3000,
+  env: 'example',
+  port: process.env.PORT || 3000,
 
   // Configurações do banco de dados
   mongodb: {
-    uri: 'mongodb://localhost:27017/operante',
+    uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/operante-example',
   },
 
   // Configurações de autenticação
   auth: {
-    jwtSecret: 'your-secret-key',
-    jwtExpiration: '1d',
+    jwtSecret: process.env.JWT_SECRET || 'example-secret-key',
+    jwtExpiration: process.env.JWT_EXPIRATION || '1h',
   },
 
   // Configurações de API
@@ -22,35 +22,35 @@ const config = {
 
   // Configurações de logs
   logs: {
-    level: 'debug',
+    level: process.env.LOG_LEVEL || 'info',
     format: 'dev',
   },
 
   // Configurações de cache
   cache: {
-    redisUrl: 'redis://localhost:6379',
+    redisUrl: process.env.REDIS_URL || 'redis://localhost:6379',
   },
 
   // Configurações de email
   email: {
-    host: 'smtp.example.com',
-    port: 587,
-    user: 'user@example.com',
-    pass: 'your-password',
+    host: process.env.EMAIL_HOST || 'smtp.example.com',
+    port: process.env.EMAIL_PORT || 587,
+    user: process.env.EMAIL_USER || 'example@example.com',
+    pass: process.env.EMAIL_PASS || 'example-password',
   },
 
   // Configurações de armazenamento
   storage: {
-    type: 'local',
-    path: './uploads',
+    type: process.env.STORAGE_TYPE || 'local',
+    path: process.env.STORAGE_PATH || './uploads-example',
   },
 
   // Configurações de segurança
   security: {
-    corsOrigin: 'http://localhost:3000',
+    corsOrigin: process.env.CORS_ORIGIN || 'http://localhost:3000',
     rateLimitWindow: '15m',
     rateLimitMax: 100,
   },
 };
 
-module.exports = config;
+export default config;

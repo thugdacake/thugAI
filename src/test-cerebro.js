@@ -1,6 +1,5 @@
-const AgentEngine = require('./core/agent-engine');
-const { parseMind, validateMind, generateMindReport } = require('./core/mind-interpreter');
-const DocCreator = require('./core/doc-creator');
+import { AgentEngine } from './core/agent-engine.js';
+import { DocCreator } from './core/doc-creator.js';
 
 async function testCerebro() {
   console.log('🧠 Iniciando teste do Cérebro Operante...\n');
@@ -15,7 +14,7 @@ async function testCerebro() {
 
     // 3. Cria um exemplo de documentação
     const docCreator = new DocCreator();
-    
+
     // Exemplo de PRD
     await docCreator.createDocument('prd', {
       title: 'Cérebro Operante v1.0',
@@ -88,4 +87,4 @@ async function testCerebro() {
 }
 
 // Executa o teste
-testCerebro(); 
+testCerebro();
