@@ -17,7 +17,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@chakra-ui/react": "^2.10.9",
+    "@chakra-ui/react": "^3.24.2",
     "@chakra-ui/theme": "3.4.6",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
